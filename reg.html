@@ -9,14 +9,10 @@
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"
-      integrity="sha512-T/tUfKSV1bihCnd+MxKD0Hm1uBBroVYBOYSk1knyvQ9VyZJpc/ALb4P0r6ubwVPSGB2GvjeoMAJJImBG12TiaQ=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    ></script>
     <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
   </head>
+  <body style="background-color:#022f57;">
   <body>
     <div id="header">
       <a id="logo" href="index.html">
@@ -24,7 +20,7 @@
       </a>
     </div>
     <div id="left">
-      <nav class="navbar navbar-default">
+      <nav class="fill">
         <div class="container-fluid">
           <div class="navbar-header">
             <a class="navbar-brand" href="#">3010-p1</a>
@@ -50,14 +46,18 @@
               <div class="row">
                 <!--Grid column-->
                 <div class="col-md-9 mb-md-0 mb-5">
-                  <form id="contact-form" name="contact-form" action="mail.php" method="POST">
+                  <form action="" name="registration">
+                  <!--<form id="contact-form" name="contact-form" method="POST">
                     <!--Grid row-->
                     <div class="row">
                       <!--Grid column-->
                       <div class="col-md-6">
                         <div class="md-form mb-0">
-                          <input type="text" id="username" name="username" class="form-control" />
-                          <label for="username" class="">username</label>
+                          <input type="text" id="username" name="username"
+                          	required minlength="6" maxlength="50"
+                          	placeholder="Create a username."
+                          	class="form-control" />
+                            <label for="username" class=""></label>
                         </div>
                       </div>
                       <!--Grid column-->
@@ -68,36 +68,22 @@
                       <!--Grid column-->
                       <div class="col-md-6">
                         <div class="md-form mb-0">
-                          <input type="password" id="password" name="password" class="form-control" />
-                          <label for="password" class="">password</label>
+                          <input type="password" id="password"
+                          required minlength="6" maxlength="50"
+                          placeholder="Create a password."
+                          name="password" class="form-control"/>
+                          <label for="password" class=""></label>
                         </div>
                       </div>
                       <!--Grid column-->
                       <!--Grid column-->
                       <div class="col-md-6">
                         <div class="md-form mb-0">
-                          <input type="password" id="password" name="password" class="form-control" />
-                          <label for="password" class="">repeat_password</label>
-                        </div>
-                      </div>
-                      <!--Grid column-->
-                    </div>
-                    <!--Grid row-->
-                    <!--Grid row-->
-                    <div class="row">
-                      <!--Grid column-->
-                      <div class="col-md-6">
-                        <div class="md-form mb-0">
-                          <input type="text" id="firstName" name="firstName" class="form-control" />
-                          <label for="firstName" class="">First name</label>
-                        </div>
-                      </div>
-                      <!--Grid column-->
-                      <!--Grid column-->
-                      <div class="col-md-6">
-                        <div class="md-form mb-0">
-                          <input type="text" id="lastName" name="lastName" class="form-control" />
-                          <label for="lastName" class="">Last name</label>
+                          <input type="password" id="password_confirm"
+                          placeholder="Confirm password"
+                          name="password_confirm" class="form-control" />
+
+                          <label for="password_confirm" class=""></label>
                         </div>
                       </div>
                       <!--Grid column-->
@@ -108,16 +94,20 @@
                       <!--Grid column-->
                       <div class="col-md-6">
                         <div class="md-form mb-0">
-                          <input type="text" id="address1" name="address1" class="form-control" />
-                          <label for="address1" class="">Address</label>
+                          <input type="text" id="firstname" name="firstname"
+                          placeholder="First Name"
+                          class="form-control" />
+                          <label for="firstName" class=""></label>
                         </div>
                       </div>
                       <!--Grid column-->
                       <!--Grid column-->
                       <div class="col-md-6">
                         <div class="md-form mb-0">
-                          <input type="text" id="address2" name="address2" class="form-control" />
-                          <label for="address2" class="">Address (continued)</label>
+                          <input type="text" id="lastname" name="lastname"
+                          placeholder="Last Name"
+                          class="form-control" />
+                          <label for="lastName" class=""></label>
                         </div>
                       </div>
                       <!--Grid column-->
@@ -128,16 +118,46 @@
                       <!--Grid column-->
                       <div class="col-md-6">
                         <div class="md-form mb-0">
-                          <input type="text" id="city" name="city" class="form-control" />
-                          <label for="city" class="">City</label>
+                          <input type="text" id="address1" name="address1"
+                          placeholder="Address"
+                          class="form-control" />
+                          <label for="address1" class=""></label>
                         </div>
                       </div>
                       <!--Grid column-->
                       <!--Grid column-->
                       <div class="col-md-6">
                         <div class="md-form mb-0">
-                          <select class="form-control" id="state" name="state">
-                            <option value="">N/A</option>
+                          <input type="text" id="address2" name="address2"
+                          placeholder="Address continued"
+                          class="form-control" />
+                          <label for="address2" class=""></label>
+                        </div>
+                      </div>
+                      <!--Grid column-->
+                    </div>
+                    <!--Grid row-->
+                    <!--Grid row-->
+                    <div class="row">
+                      <!--Grid column-->
+                      <div class="col-md-6">
+                        <div class="md-form mb-0">
+                          <input type="text" id="city" name="city"
+                          placeholder="City"
+                          class="form-control" />
+                          <label for="city" class=""></label>
+                        </div>
+                      </div>
+                      <!--Grid column-->
+                      <!--Grid column-->
+                      <div class="col-md-6">
+                        <div class="md-form mb-0">
+                          <select class="form-control"
+                            required id="state" name="state">
+                            <option value="" selected="selected"
+                            hidden="hidden" disabled="disabled">
+                            --Please Select--
+                            </option>
                             <option value="AK">Alaska</option>
                             <option value="AL">Alabama</option>
                             <option value="AR">Arkansas</option>
@@ -191,7 +211,7 @@
                             <option value="WV">West Virginia</option>
                             <option value="WY">Wyoming</option>
                           </select>
-                          <label for="state" class="">State</label>
+                          <label for="state" class=""></label>
                         </div>
                       </div>
                       <!--Grid column-->
@@ -202,16 +222,20 @@
                       <!--Grid column-->
                       <div class="col-md-6">
                         <div class="md-form mb-0">
-                          <input type="text" id="zipCode" name="zipCode" class="form-control" />
-                          <label for="zipCode" class="">Zip Code</label>
+                          <input type="text" id="zipcode" name="zipcode"
+                          placeholder="Zipcode"
+                          class="form-control" />
+                          <label for="zipcode" class=""></label>
                         </div>
                       </div>
                       <!--Grid column-->
                       <!--Grid column-->
                       <div class="col-md-6">
                         <div class="md-form mb-0">
-                          <input type="text" id="phoneNumber" name="phoneNumber" class="form-control" />
-                          <label for="phoneNumber" class="">Phone Number</label>
+                          <input id="phonenumber" name="phonenumber"
+                          placeholder="Phone number"
+                          class="form-control" />
+                          <label for="phoneNumber" class=""></label>
                         </div>
                       </div>
                       <!--Grid column-->
@@ -222,16 +246,22 @@
                       <!--Grid column-->
                       <div class="col-md-6">
                         <div class="md-form mb-0">
-                          <input type="text" id="email" name="email" class="form-control" />
-                          <label for="email" class="">Email</label>
+                          <input type="text" id="email" name="email"
+                          placeholder="email"
+                          class="form-control" />
+                          <label for="email" class=""></label>
                         </div>
                       </div>
                       <!--Grid column-->
                       <!--Grid column-->
                       <div class="col-md-6">
                         <div class="md-form mb-0">
-                          <input type="datetime-local" id="datetimeLocal" class="form-control" />
-                          <label for="dob" class="">Date of Birth</label>
+                          <input type="text" id="dob"
+                          placeholder="Date of Birth"
+                          required
+                          onfocus="(this.type='date')"
+                          class="form-control" />
+                          <label for="dob" class=""></label>
                         </div>
                       </div>
                       <!--Grid column-->
@@ -243,7 +273,9 @@
                       <div class="col-md-6">
                         <div class="md-form mb-0">
                           <label for="marital" class="">Marital Status: </label>
-                          <input type="radio" name="marital" />Single <input type="radio" name="marital" />Married
+                          <br>
+                          <input type="radio" id="single" value="single" name="marital" required />Single
+                          <input type="radio" id="married" value="married" name="marital" />Married
                         </div>
                       </div>
                       <!--Grid column-->
@@ -251,17 +283,19 @@
                       <div class="col-md-6">
                         <div class="md-form mb-0">
                           <label for="gender" class="">Gender: </label>
-                          <input type="radio" name="gender" />Female <input type="radio" name="gender" />Male
+                          <br>
+                          <input type="radio" id="female" value="female" name="gender" required />Female
+                          <input type="radio" id="male" value="male" name="gender" />Male
                         </div>
                       </div>
                       <!--Grid column-->
                     </div>
                     <!--Grid row-->
+                    <input type="submit" class="btn btn-success" value="Submit Button">
+                <input type="reset" class="btn btn-info" value="Reset Button">
+                    <br><br>
                   </form>
-                  <div class="text-center text-md-left">
-                    <a class="btn btn-primary" onclick="document.getElementById('contact-form').submit();">Submit</a>
-                    <a class="btn btn-primary" onclick="$('form').get(0).reset() // or $('form')[0].reset()">Reset</a>
-                  </div>
+
                   <div class="status"></div>
                 </div>
                 <!--Grid column-->
@@ -272,6 +306,7 @@
         </div>
       </div>
     </div>
+    <script src="script.js"></script>
   </body>
   <footer class="footer">
     <div class="container text-center">
@@ -279,4 +314,5 @@
       <a target="_blank" href="https://www.twitter.com/"><i class="fa fa-twitter"></i></a>
     </div>
   </footer>
+  <div class="question-template clearfix">
 </html>
