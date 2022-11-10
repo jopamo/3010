@@ -15,7 +15,7 @@ footer {
   position: relative;
   bottom: 0;
   width: 100%;
-  height: 30px;
+  min-height:100%;
   background: #021b5c;
 }
 
@@ -26,8 +26,6 @@ footer {
 }
 
 #left {
-    width: auto;
-    height: auto;
     background-color: #022f57;
     overflow:auto;
 }
@@ -85,26 +83,8 @@ h1 {
   font-size: 40px;
 }
 
-h2 {
-  text-align: center;
-  font-size: 30px;
-  margin: 0;
-  font-weight: 300;
-  color: inherit;
-  padding: 50px;
-}
-
-.center {
-  text-align: center;
-}
-
-section {
-  height: 100vh;
-}
-
 /* NAVIGATION */
 nav {
-  width: 80%;
   margin: 0 auto;
   background: #fff;
   padding: 50px 0;
@@ -282,10 +262,20 @@ nav.shift ul li a:hover:after {
     border-radius: 0;
   }
 }
+
+#content {
+    width:100%;
+    min-height:100%;
+}
 /*
 .valid {
     background-color: #008000;
 }
 .error {
     background-color: #f00;
+}
+
+#Content{
+    width:100%;
+    min-height:100%;
 }
