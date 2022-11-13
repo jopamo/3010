@@ -118,7 +118,7 @@ function phoneFormatter() {
   $('#phonenumber').on('input', function() {
     let number = $(this).val().replace(/[^\d]/g, '')
 
-    if (number.length > 10) {
+    if (number.length >= 10) {
       number = number.slice(0, 10);
       number = number.replace(/(\d{3})(\d{3})(\d{4})/, "$1-$2-$3");
     }
@@ -132,7 +132,7 @@ function zipFormatter() {
   $('#zipcode').on('input', function() {
     let number = $(this).val().replace(/[^\d]/g, '')
 
-    if (number.length > 9) {
+    if (number.length >= 9) {
       number = number.slice(0, 9);
       number = number.replace(/(\d{5})(\d{4})/, "$1-$2");
     }
