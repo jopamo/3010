@@ -1,3 +1,4 @@
+/*
 $(function() {
   const value=$("#password_reg").val();
 
@@ -81,16 +82,6 @@ $(function() {
         email: true
       }
     },
-/*
-    highlight: function (element) {
-      $(element).addClass('error').removeClass('valid')
-        .closest('.form-group').addClass('error').removeClass('valid');
-    },
-    unhighlight: function (element) {
-      $(element).addClass('valid').removeClass('error')
-        .closest('.form-group').addClass('valid').removeClass('error');
-    },
-*/
     messages: {
       firstname: "Enter your firstname",
       lastname: "Enter your lastname",
@@ -113,7 +104,7 @@ $(function() {
     }
   });
 });
-
+*/
 function phoneFormatter() {
   $('#phonenumber').on('input', function() {
     let number = $(this).val().replace(/[^\d]/g, '')
