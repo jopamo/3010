@@ -1,3 +1,83 @@
+<?php
+
+$usernameError = $passwordError = $password_confirmError = "";
+$emailError = "";
+$username = $firstname = $lastname = "";
+$address1 = $address2 = $city = $state = $zipcode = "";
+$phonenumber = $email = $dob = $marital = $gender = "";
+$password = $password_confirm = "";
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  if (empty($_POST["username"])) {
+    $usernameError = "Username is required";
+  }
+  else {
+    $username = $_POST["username"];
+
+    if (strlen($username) < 6) {
+      $usernameError = "Minimum length is 6";
+    }
+    elseif (strlen($username) > 50) {
+      $usernameError = "Max length is 50";
+    }
+  }
+
+  if (empty($_POST["password"])) {
+    $passwordError = "Password is required";
+  }
+  else {
+    $password = $_POST["password"];
+
+    if (strlen($password) < 8) {
+      $usernameError = "Minimum length is 8";
+    }
+    elseif (strlen($password) > 50) {
+      $usernameError = "Max length is 50";
+    }
+
+    if(!preg_match("#[A-Z]+#",$password)) {
+      $passwordError = "Must Contain At Least 1 uppercase Letter.";
+    }
+    elseif(!preg_match("#[a-z]+#",$password)) {
+      $passwordError = "Must Contain At Least 1 lower Letter.";
+    }
+    elseif(!preg_match("#[0-9]+#",$password)) {
+      $passwordError = "Must Contain At Least 1 number.";
+    }
+    elseif(!preg_match('/[\'^£$%&*()}{@#~?><>,|=_+¬-]/',$password)) {
+      $passwordError = "Must Contain At Least 1 special character.";
+    }
+  }
+
+  $password_confirm = $_POST["password_confirm"];
+
+  if ($password_confirm != $password) {
+    $password_confirmError = "Passwords must match";
+  }
+
+  //First Name
+  if (empty($_POST["firstname"])) {
+    $usernameError = "firstname is required";
+  }
+  else {
+    $firstname = $_POST["firstname"];
+
+    if (strlen($firstname) > 50) {
+      $firstnameError = "Max length is 50";
+    }
+  }
+
+  if (empty($_POST["email"])) {
+    $emailError = "Email is required";
+  }
+  else {
+    if (!preg_match("/([\w\-]+\@[\w\-]+\.[\w\-]+)/",$email)) {
+      $emailError = "Invalid email format";
+    }
+  }
+}
+?>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
@@ -27,7 +107,7 @@
           </div>
           <ul class="nav navbar-nav">
             <li><a href="index.html">Home</a></li>
-            <li class="active"><a href="reg.html">Registration</a></li>
+            <li class="active"><a href="reg.php">Registration</a></li>
             <li><a href="anime.html">Animations</a></li>
           </ul>
         </div>
@@ -46,17 +126,17 @@
               <div class="row">
                 <!--Grid column-->
                 <div class="col-md-9 mb-md-0 mb-5">
-                  <form action="" name="registration">
-                  <!--<form id="contact-form" name="contact-form" method="POST">
+                  <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
                     <!--Grid row-->
                     <div class="row">
                       <!--Grid column-->
                       <div class="col-md-6">
                         <div class="md-form mb-0">
                           <input type="text" id="username" name="username"
-                          	required minlength="6" maxlength="50"
-                          	placeholder="Create a username."
-                          	class="form-control" />
+                            value="<?php echo $username; ?>"
+                            placeholder="Create a username."
+                            class="form-control" />
+                            <span class="error"> <?php echo $usernameError;?></span>
                             <label for="username" class=""></label>
                         </div>
                       </div>
@@ -68,9 +148,9 @@
                       <div class="col-md-6">
                         <div class="md-form mb-0">
                           <input type="password" id="password"
-                          required minlength="6" maxlength="50"
                           placeholder="Create a password."
                           name="password" class="form-control"/>
+                          <span class="error"> <?php echo $passwordError;?></span>
                           <label for="password" class=""></label>
                         </div>
                       </div>
@@ -80,7 +160,7 @@
                           <input type="password" id="password_confirm"
                           placeholder="Confirm password"
                           name="password_confirm" class="form-control" />
-
+                          <span class="error"> <?php echo $password_confirmError;?></span>
                           <label for="password_confirm" class=""></label>
                         </div>
                       </div>
@@ -94,7 +174,7 @@
                           <input type="text" id="firstname" name="firstname"
                           placeholder="First Name"
                           class="form-control" />
-                          <label for="firstName" class=""></label>
+                          <label for="firstname" class=""></label>
                         </div>
                       </div>
                       <!--Grid column-->
@@ -145,7 +225,7 @@
                       <div class="col-md-6">
                         <div class="md-form mb-0">
                           <select class="form-control"
-                            required id="state" name="state">
+                            id="state" name="state">
                             <option value="" selected="selected"
                             hidden="hidden" disabled="disabled">
                             --Please Select--
@@ -238,6 +318,7 @@
                           <input type="text" id="email" name="email"
                           placeholder="email"
                           class="form-control" />
+                          <span class="error"> <?php echo $emailError;?></span>
                           <label for="email" class=""></label>
                         </div>
                       </div>
@@ -246,7 +327,6 @@
                         <div class="md-form mb-0">
                           <input type="text" id="dob"
                           placeholder="Date of Birth"
-                          required
                           onfocus="(this.type='date')"
                           class="form-control" />
                           <label for="dob" class=""></label>
@@ -261,7 +341,7 @@
                         <div class="md-form mb-0">
                           <label for="marital" class="">Marital Status: </label>
                           <br>
-                          <input type="radio" id="single" value="single" name="marital" required />Single
+                          <input type="radio" id="single" value="single" name="marital" />Single
                           <input type="radio" id="married" value="married" name="marital" />Married
                         </div>
                       </div>
@@ -270,7 +350,7 @@
                         <div class="md-form mb-0">
                           <label for="gender" class="">Gender: </label>
                           <br>
-                          <input type="radio" id="female" value="female" name="gender" required />Female
+                          <input type="radio" id="female" value="female" name="gender" />Female
                           <input type="radio" id="male" value="male" name="gender" />Male
                         </div>
                       </div>
@@ -293,12 +373,44 @@
       </div>
     </div>
     <script src="script.js"></script>
+    <?php
+echo "<h2>Your Input:</h2>";
+echo $username;
+echo "<br>";
+echo $password;
+echo "<br>";
+echo $password_confirm;
+echo "<br>";
+echo $firstname;
+echo "<br>";
+echo $lastname;
+echo "<br>";
+echo $address1;
+echo "<br>";
+echo $address2;
+echo "<br>";
+echo $city;
+echo "<br>";
+echo $state;
+echo "<br>";
+echo $zipcode;
+echo "<br>";
+echo $phonenumber;
+echo "<br>";
+echo $email;
+echo "<br>";
+echo $dob;
+echo "<br>";
+echo $marital;
+echo "<br>";
+echo $gender;
+?>
   </body>
   <footer class="footer">
     <div id="footer" class="container text-center">
       <a target="_blank" href="https://www.facebook.com/"><i class="fa fa-facebook"></i></a>
       <a target="_blank" href="https://www.twitter.com/"><i class="fa fa-twitter"></i></a>
     </div>
-  </footer>
+    </footer>
   <div class="question-template clearfix">
 </html>
