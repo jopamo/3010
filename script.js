@@ -134,7 +134,7 @@ function zipFormatter() {
 $(zipFormatter);
 
 $(document).ready(function () {
-    var docHeight = $('#content').height();
-    var wantedHeight = docHeight - 376;
+    const docHeight = $('#content').height();
+    const wantedHeight = docHeight - 376;
     $('#content').css({ "min-height": wantedHeight });
 });
