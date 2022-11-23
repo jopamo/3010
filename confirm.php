@@ -547,24 +547,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
               </div>
             </section>
             <!--Section: Contact v.2-->
-<?php } else { ?>
-	<?php
+<?php } else {
 
-echo "<h2>Your Input:</h2>";
-echo 'First Name: ' . $_POST["firstname"] . '<br>';
-echo 'Last Name: ' . $_POST["lastname"] . '<br>';
-echo 'username: ' . $_POST["username"] . '<br>';
-echo 'address1: ' . $_POST["address1"] . '<br>';
-echo 'address2: ' . $_POST["address2"] . '<br>';
-echo 'city: ' . $_POST["city"] . '<br>';
-echo 'state: ' . $_POST["state"] . '<br>';
-echo 'zipcode: ' . $_POST["zipcode"] . '<br>';
-echo 'phonenumber: ' . $_POST["phonenumber"] . '<br>';
-echo 'email: ' . $_POST["email"] . '<br>';
-echo 'dob: ' . $_POST["dob"] . '<br>';
-echo "<br><br><br>";
- ?>
-<?php } ?>
+  echo "<h2>Your Input:</h2>";
+  echo 'First Name: ' . $_POST["firstname"] . '<br>';
+  echo 'Last Name: ' . $_POST["lastname"] . '<br>';
+  echo 'username: ' . $_POST["username"] . '<br>';
+  echo 'address1: ' . $_POST["address1"] . '<br>';
+  echo 'address2: ' . $_POST["address2"] . '<br>';
+  echo 'city: ' . $_POST["city"] . '<br>';
+  echo 'state: ' . $_POST["state"] . '<br>';
+  echo 'zipcode: ' . $_POST["zipcode"] . '<br>';
+  echo 'phonenumber: ' . $_POST["phonenumber"] . '<br>';
+  echo 'email: ' . $_POST["email"] . '<br>';
+  echo 'dob: ' . $_POST["dob"] . '<br>';
+  echo "<br><br><br>";
+
+  } ?>
           </div>
         </div>
       </div>
