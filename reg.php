@@ -37,7 +37,7 @@ $errorFlag = 0;
       <nav class="fill">
         <div class="container-fluid">
           <div class="navbar-header">
-            <a class="navbar-brand" href="#">3010-p1</a>
+            <a class="navbar-brand" href="#">3010-p4</a>
           </div>
           <ul class="nav navbar-nav">
             <li><a href="index.html">Home</a></li>
@@ -305,6 +305,7 @@ $errorFlag = 0;
                           <br>
                           <input type="radio" id="female" value="female" name="gender" />Female
                           <input type="radio" id="male" value="male" name="gender" />Male
+                          <input type="radio" id="nonbinary" value="nonbinary" name="gender" />NonBinary
                           <span class="error"> <?php echo $genderError;?></span>
                         </div>
                       </div>
@@ -313,10 +314,9 @@ $errorFlag = 0;
                     <!--Grid row-->
                     <input type="hidden" id="errorFlag" name="errorFlag" value="errorFlag" />
                     <input type="submit" class="btn btn-success" value="Submit" name="submit">
-                <input type="reset" class="btn btn-info" value="Reset">
+                	<input type="reset" class="btn btn-info" value="Reset">
                     <br><br>
                   </form>
-
                   <div class="status"></div>
                 </div>
                 <!--Grid column-->
