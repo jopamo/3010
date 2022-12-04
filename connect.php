@@ -1,9 +1,7 @@
 <?php
 
   //Create Connection
-  $dsn = "mysql:host=localhost;dbname=project";
-  $db_user = "root";
-  $db_password = "";
+  $dsn = "mysql:host=localhost;dbname=$db_name";
 
   try {
     // set connection info
