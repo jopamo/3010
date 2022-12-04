@@ -4,7 +4,7 @@ $usernameError = $passwordError = $password_confirmError = "";
 $emailError = $firstnameError = $lastnameError = $address1Error = "";
 $cityError = $stateError = $zipcodeError = $address2Error = "";
 $phonenumberError = $dobError = $maritalError = $genderError = "";
-$username = $firstname = $lastname = "";
+$username = $firstname = $lastname = $sql = "";
 $address1 = $address2 = $city = $state = $zipcode = "";
 $phonenumber = $email = $dob = $marital = $gender = "";
 $password = $password_confirm = "";
@@ -548,22 +548,87 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </section>
             <!--Section: Contact v.2-->
 <?php } else {
+  $dbname = "project";
+  $last_insert_id = "";
 
-  echo "<h2>Your Input:</h2>";
-  echo 'First Name: ' . $_POST["firstname"] . '<br>';
-  echo 'Last Name: ' . $_POST["lastname"] . '<br>';
-  echo 'username: ' . $_POST["username"] . '<br>';
-  echo 'address1: ' . $_POST["address1"] . '<br>';
-  echo 'address2: ' . $_POST["address2"] . '<br>';
-  echo 'city: ' . $_POST["city"] . '<br>';
-  echo 'state: ' . $_POST["state"] . '<br>';
-  echo 'zipcode: ' . $_POST["zipcode"] . '<br>';
-  echo 'phonenumber: ' . $_POST["phonenumber"] . '<br>';
-  echo 'email: ' . $_POST["email"] . '<br>';
-  echo 'dob: ' . $_POST["dob"] . '<br>';
-  echo "<br><br><br>";
+  include_once('connect.php');
 
-  } ?>
+  // insert
+  try {
+    $pdo->beginTransaction();
+
+    // insert statement
+    $insert_sql  = "INSERT INTO registration (userName, password , firstName, lastName, address1,
+      address2, city, state, zipCode, phone, email, gender, maritalStatus, dateOfBirth)
+      VALUES(:username, :password, :firstname, :lastname, :address1, :address2, :city, :state,
+      :zipcode, :phonenumber, :email, :gender, :marital, :dob)";
+    $insert = $pdo->prepare($insert_sql);
+    $insert->bindValue(':username', $username);
+    $insert->bindValue(':password', $password);
+    $insert->bindValue(':firstname', $firstname);
+    $insert->bindValue(':lastname', $lastname);
+    $insert->bindValue(':address1', $address1);
+    $insert->bindValue(':address2', $address2);
+    $insert->bindValue(':city', $city);
+    $insert->bindValue(':state', $state);
+    $insert->bindValue(':zipcode', $zipcode);
+    $insert->bindValue(':phonenumber', $phonenumber);
+    $insert->bindValue(':email', $email);
+    $insert->bindValue(':gender', $gender);
+    $insert->bindValue(':marital', $marital);
+    $insert->bindValue(':dob', date($dob));
+
+    if ($insert->execute() === FALSE) {
+      $pdo->rollback();
+      echo 'Unable to insert data';
+      echo "<br>";
+    }
+    else {
+      $last_insert_id = $pdo->lastInsertId();
+      echo 'Last Insert ID: '.$last_insert_id;
+      echo "<br>";
+      $pdo->commit();
+    }
+
+  } catch (PDOException $e) {
+    die("Could not connect to the database $dbname :" . $e->getMessage());
+  }
+
+  // select
+  try {
+    //SELECT one row
+    $select = $pdo->prepare("SELECT * FROM `registration` WHERE `id` = :id LIMIT 1;");
+    $select->bindValue(':id', $last_insert_id);
+    $select->execute();
+    $row = $select->fetch(PDO::FETCH_ASSOC);
+
+    if($row === false){
+      echo $last_insert_id . ' not found!';
+      echo "<br>";
+    } else{
+      echo $last_insert_id . ' selected and fetched!';
+      echo "<br>";
+    }
+
+    echo "<h2>Your Input:</h2>";
+    echo 'First Name: ' . $row["firstName"] . '<br>';
+    echo 'Last Name: ' . $row["lastName"] . '<br>';
+    echo 'username: ' . $row["userName"] . '<br>';
+    echo 'address1: ' . $row["address1"] . '<br>';
+    echo 'address2: ' . $row["address2"] . '<br>';
+    echo 'city: ' . $row["city"] . '<br>';
+    echo 'state: ' . $row["state"] . '<br>';
+    echo 'zipcode: ' . $row["zipCode"] . '<br>';
+    echo 'phonenumber: ' . $row["phone"] . '<br>';
+    echo 'email: ' . $row["email"] . '<br>';
+    echo 'dob: ' . $row["dateOfBirth"] . '<br>';
+    echo "<br><br><br>";
+
+  } catch (PDOException $e) {
+    die("Could not connect to the database $dbname :" . $e->getMessage());
+  }
+} ?>
+
           </div>
         </div>
       </div>

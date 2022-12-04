@@ -1,4 +1,3 @@
-/*
 $(function() {
   const value=$("#password_reg").val();
 
@@ -104,7 +103,7 @@ $(function() {
     }
   });
 });
-*/
+
 function phoneFormatter() {
   $('#phonenumber').on('input', function() {
     let number = $(this).val().replace(/[^\d]/g, '')
