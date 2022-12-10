@@ -48,7 +48,8 @@
               <div class="row">
                 <!--Grid column-->
                 <div class="col-md-9 mb-md-0 mb-5">
-                  <form action ="confirm.php" method="post">
+                  <form name="registrationForm" id="registrationForm" action="" method="post">
+                  <input type="hidden" name="action" value="registration"/>
                     <!--Grid row-->
                     <div class="row">
                       <!--Grid column-->
@@ -315,7 +316,7 @@
 				<!--Section: SQL -->
 				<?php } else {
 				  $db_user = "root";
-                  $db_password = "";	
+                  $db_password = "";
 				  $db_name = "project";
 				  $db_table = "registration";
 				  $last_insert_id = "";

@@ -1,4 +1,8 @@
-$(function() {
+$(document).ready(function () {
+  const docHeight = $('#content').height();
+  const wantedHeight = docHeight - 376;
+  $('#content').css({ "min-height": wantedHeight });
+
   const value=$("#password_reg").val();
 
   $.validator.addMethod("checkupper", function(value) {
@@ -17,7 +21,7 @@ $(function() {
     return /^(?=.*[@#$%&])/.test(value);
   });
 
-  $("form[name='registration']").validate({
+  $('form').validate({
     rules: {
       username: {
         required: true,
@@ -81,6 +85,16 @@ $(function() {
         email: true
       }
     },
+/*
+    highlight: function (element) {
+      $(element).addClass('error').removeClass('valid')
+        .closest('.form-group').addClass('error').removeClass('valid');
+    },
+    unhighlight: function (element) {
+      $(element).addClass('valid').removeClass('error')
+        .closest('.form-group').addClass('valid').removeClass('error');
+    },
+*/
     messages: {
       firstname: "Enter your firstname",
       lastname: "Enter your lastname",
@@ -99,8 +113,10 @@ $(function() {
     },
 
     submitHandler: function(form) {
-      form.submit();
-    }
+           if ($(form).valid())
+                  form.submit();
+                           return false; // prevent normal form posting
+        }
   });
 });
 
@@ -131,9 +147,3 @@ function zipFormatter() {
 };
 
 $(zipFormatter);
-
-$(document).ready(function () {
-    const docHeight = $('#content').height();
-    const wantedHeight = docHeight - 376;
-    $('#content').css({ "min-height": wantedHeight });
-});

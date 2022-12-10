@@ -1,9 +1,5 @@
 <?php
 
-$usernameError = $passwordError = $password_confirmError = "";
-$emailError = $firstnameError = $lastnameError = $address1Error = "";
-$cityError = $stateError = $zipcodeError = $address2Error = "";
-$phonenumberError = $dobError = $maritalError = $genderError = "";
 $username = $firstname = $lastname = "";
 $address1 = $address2 = $city = $state = $zipcode = "";
 $phonenumber = $email = $dob = $marital = $gender = "";
@@ -60,7 +56,8 @@ $errorFlag = 0;
               <div class="row">
                 <!--Grid column-->
                 <div class="col-md-9 mb-md-0 mb-5">
-                  <form action ="confirm.php" method="post">
+                  <form action="confirm.php" method="post">
+                  <input type="hidden" name="action" value="registration"/>
                     <!--Grid row-->
                     <div class="row">
                       <!--Grid column-->
@@ -70,7 +67,6 @@ $errorFlag = 0;
                             value="<?php echo $username; ?>"
                             placeholder="Create a username."
                             class="form-control" />
-                            <span class="error"> <?php echo $usernameError;?></span>
                             <label for="username" class=""></label>
                         </div>
                       </div>
@@ -84,7 +80,6 @@ $errorFlag = 0;
                           <input type="password" id="password"
                           placeholder="Create a password."
                           name="password" class="form-control"/>
-                          <span class="error"> <?php echo $passwordError;?></span>
                           <label for="password" class=""></label>
                         </div>
                       </div>
@@ -94,7 +89,6 @@ $errorFlag = 0;
                           <input type="password" id="password_confirm"
                           placeholder="Confirm password"
                           name="password_confirm" class="form-control" />
-                          <span class="error"> <?php echo $password_confirmError;?></span>
                           <label for="password_confirm" class=""></label>
                         </div>
                       </div>
@@ -109,7 +103,6 @@ $errorFlag = 0;
                           value="<?php echo $firstname; ?>"
                           placeholder="First Name"
                           class="form-control" />
-                          <span class="error"> <?php echo $firstnameError;?></span>
                           <label for="firstname" class=""></label>
                         </div>
                       </div>
@@ -120,7 +113,6 @@ $errorFlag = 0;
                           value="<?php echo $lastname; ?>"
                           placeholder="Last Name"
                           class="form-control" />
-                          <span class="error"> <?php echo $lastnameError;?></span>
                           <label for="lastname" class=""></label>
                         </div>
                       </div>
@@ -135,7 +127,6 @@ $errorFlag = 0;
                           value="<?php echo $address1; ?>"
                           placeholder="Address"
                           class="form-control" />
-                          <span class="error"> <?php echo $address1Error;?></span>
                           <label for="address1" class=""></label>
                         </div>
                       </div>
@@ -146,7 +137,6 @@ $errorFlag = 0;
                           value="<?php echo $address2; ?>"
                           placeholder="Address continued"
                           class="form-control" />
-                          <span class="error"> <?php echo $address2Error;?></span>
                           <label for="address2" class=""></label>
                         </div>
                       </div>
@@ -161,7 +151,6 @@ $errorFlag = 0;
                           value="<?php echo $city; ?>"
                           placeholder="City"
                           class="form-control" />
-                          <span class="error"> <?php echo $cityError;?></span>
                           <label for="city" class=""></label>
                         </div>
                       </div>
@@ -227,7 +216,6 @@ $errorFlag = 0;
                             <option value="WV">West Virginia</option>
                             <option value="WY">Wyoming</option>
                           </select>
-                          <span class="error"> <?php echo $stateError;?></span>
                           <label for="state" class=""></label>
                         </div>
                       </div>
@@ -242,7 +230,6 @@ $errorFlag = 0;
                           value="<?php echo $zipcode; ?>"
                           placeholder="Zipcode"
                           class="form-control" />
-                          <span class="error"> <?php echo $zipcodeError;?></span>
                           <label for="zipcode" class=""></label>
                         </div>
                       </div>
@@ -253,7 +240,6 @@ $errorFlag = 0;
                           value="<?php echo $phonenumber; ?>"
                           placeholder="Phone number"
                           class="form-control" />
-                          <span class="error"> <?php echo $phonenumberError;?></span>
                           <label for="phoneNumber" class=""></label>
                         </div>
                       </div>
@@ -268,7 +254,6 @@ $errorFlag = 0;
                           value="<?php echo $email; ?>"
                           placeholder="email"
                           class="form-control" />
-                          <span class="error"> <?php echo $emailError;?></span>
                           <label for="email" class=""></label>
                         </div>
                       </div>
@@ -280,7 +265,6 @@ $errorFlag = 0;
                           placeholder="Date of Birth"
                           onfocus="(this.type='date')"
                           class="form-control" />
-                          <span class="error"> <?php echo $dobError;?></span>
                           <label for="dob" class=""></label>
                         </div>
                       </div>
@@ -295,7 +279,6 @@ $errorFlag = 0;
                           <br>
                           <input type="radio" id="single" value="single" name="marital" />Single
                           <input type="radio" id="married" value="married" name="marital" />Married
-                          <span class="error"> <?php echo $maritalError;?></span>
                         </div>
                       </div>
                       <!--Grid column-->
@@ -306,7 +289,6 @@ $errorFlag = 0;
                           <input type="radio" id="female" value="female" name="gender" />Female
                           <input type="radio" id="male" value="male" name="gender" />Male
                           <input type="radio" id="nonbinary" value="nonbinary" name="gender" />NonBinary
-                          <span class="error"> <?php echo $genderError;?></span>
                         </div>
                       </div>
                       <!--Grid column-->
