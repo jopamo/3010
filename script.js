@@ -115,8 +115,9 @@ $(document).ready(function () {
     submitHandler: function(form) {
       if ($(form).valid())
         form.submit();
-                           return false; // prevent normal form posting
-        }
+
+    return false;
+    }
   });
 });
 
