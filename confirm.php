@@ -313,22 +313,22 @@
               </div>
             </section>
             <!--Section: Contact v.2-->
-				<!--Section: SQL -->
-				<?php } else {
-				  $db_user = "root";
-                  $db_password = "";
-				  $db_name = "project";
-				  $db_table = "registration";
-				  $last_insert_id = "";
+            <!--Section: SQL -->
+            <?php } else {
+              $db_user = "root";
+              $db_password = "";
+              $db_name = "project";
+              $db_table = "registration";
+              $last_insert_id = "";
 
-				  require_once('connect.php');
-				  require_once('insert.php');
-				  require_once('select.php');
-				} ?>
-			</div>
+              require_once('connect.php');
+              require_once('insert.php');
+              require_once('select.php');
+            } ?>
+          </div>
         </div>
       </div>
-    </div>
+  </div>
     <script src="script.js"></script>
   </body>
   <footer class="footer">

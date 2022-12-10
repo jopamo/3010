@@ -113,8 +113,8 @@ $(document).ready(function () {
     },
 
     submitHandler: function(form) {
-           if ($(form).valid())
-                  form.submit();
+      if ($(form).valid())
+        form.submit();
                            return false; // prevent normal form posting
         }
   });
